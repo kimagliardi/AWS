@@ -1,13 +1,13 @@
 # AWS - 10,000 Feet Overview
 
 ## <center>The AWS Plataform</center>
-![alt](aws_overview.jpg)
+![alt](/images/aws_overview.jpg)
 
 ## What is a Region  What is an AZ ?
 - A region is a geographical area. Each region consists of 2 (or more) Availability zones.
 - An Availability Zone (AZ) is simply a Data Center
 
-![alt](aws_region.png)
+![alt](/images/aws_region.png)
 
 ## <center>What is An Edge Location ?</center>
 **Edge locations** are endpoints for AWS which are used for caching content. Typically this consists of CloudFront, Amazon's Content delivery Network (CDN). There are many more Edge Locations than regions. Currently there are over **96** Edge locations.

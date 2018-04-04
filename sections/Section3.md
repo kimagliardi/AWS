@@ -26,14 +26,14 @@ What does IAM give you ?
     - Apply IAM password policy
     - Create/Manage users/groups;
     - Create/Manage roles.
-![alt](IAM_roles.jpg)
+![alt](/images/IAM_roles.jpg)
 - Tip: 
     - Access Key ID  / Secret Access Key
         - Can be used just with SDK's
 ---
 ### Active directory federation
 
-![alt](adfs_fed.jpg)
+![alt](/images/adfs_fed.jpg)
 
 - **Remember**: Tipe of authentication: **SAML**
 
