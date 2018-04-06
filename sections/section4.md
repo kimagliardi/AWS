@@ -98,3 +98,82 @@ Amazon **EBS** allows you to create storage volumes and attach them to Amazon **
 - On an EBS-backed instance, the default action is for the root EBS volume to be deleted when the instance is terminated.
 - EBS Root Volumes of your **DEFAULT AMI's** cannot be encrypted. You can also use a third party tool (such as bit lockec, etc..) to encrypt the root volume, or this can be done when creating AMI's (lab to follow) in AWS console or using the API.
 - Additional volumes can be encrypted.
+
+
+---
+
+# Security Groups
+
+Security is basically a **virtual firewall** and it's controlling traffic to your instances.
+
+- All inbound traffic is blocked by default;
+- All Outbound traffic is allowed;
+- All changes made on security ;
+- groups have effect **immediatelly**.
+
+- You can have any number of **EC2 instances** within a security group;
+- You can have multiple security groups attached to EC2 Instances; 
+
+- Security groups are **stateful**. Just by adding a inbound rule it automatically adds a outbound rule.
+
+- You cannot block IP addresses using Security Groups, instead use **Network Access Control Lists**;
+
+- You can specify allow rules, but not deny rules.
+---
+
+# EBS Volumes - LAB
+
+![alt](/images/instancevol.jpg)
+- Obviously, volumes (for an instance) should be located at the same region!
+
+
+- Snapshot indicates machine root volume;
+- Volumes can be modified on the fly. (Except magnetic volumes..**Standard**)
+
+![alt](/images/snapshot.jpg)
+
+- To move a EBS volume from a Availability Zone to another, We need create a snapshot of this volume and them create a new volume on the new AZ.
+- We can change the volume type during creation..
+
+
+    ![alt](/images/movevol.jpg)
+    ![alt](/images/movevol2.jpg)
+
+- We can use a snapshot to create a new AMI's
+
+
+## Volumes & Snapshots summary
+- Volumes exist on EBS:
+    - Virtual Hard Disk
+
+- Snapshots exist on S3.
+- Snapshots are point in time copies of volumes;
+- Snapshots are incremental - this means only the blocks that have changed since your last snapshot are moved to s3.
+- To create a snapshot for Amazon EBS volumes that server as root devices, you should stop the instance before taking the snapshot;
+- However you can take a snap while the instance is running;
+- You can create AMI's from both Volumes and Snapshots;
+- You can change EBS volume sizes on the fly, including changing the size and storage type;
+- Volumes will ALWAYS be in the same availability zone as the EC2 instance.
+- To move an EC2 volume from one AZ/Region to another, take a snap or an image of it, the copy it to the new AZ/Region
+
+## Volumes vs Snapshots - Security
+- Snapshots of encrypted volumes are encrypted automatically.
+- Volumes restored from encrypted snapshots are encrypted automatically.
+- You can share snapshots, but only if they are unencrypted
+    - These snapshots can be shared with other AWS accounts or made public.
+
+
+--- 
+
+# EFS - LABS
+What is EFS ?
+
+Amazon Elastic File System (Amazon EFS) is a file storage service for Amazon Elastic Compute Cloud (Amazon EC2) instances. Amazon EFS is easy to use and provides a simple interface that allows you to create and configure file systems quickly and easily. With Amazon EFS, storage capacity is elastic, growing and shrinking automatically as you add and remove files, so your applications have the storage they need, when they need it.
+
+- Features:
+    - Supports the Network File System version 4 (NFSv4) protocol;
+    - You only pay for the storage you use (no pre-provisioning required);
+    - Can scale up to the petabytes;
+    - Can support thousands of concurrent connections;
+    - Data is stored across multiple AZ's within a region;
+    - Read After Write consistency
